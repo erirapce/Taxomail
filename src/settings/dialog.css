@@ -44,7 +44,7 @@ ul {
 }
 
 .ms-TextField {
-  width: 17rem;
+  width: 15rem;
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
