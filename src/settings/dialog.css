@@ -28,3 +28,17 @@ ul {
 .ms-ListItem-tertiaryText {
   padding-left: 15px;
 }
+
+#contact {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+}
+
+#name,
+#other-Fields {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
