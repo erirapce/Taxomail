@@ -49,3 +49,12 @@ ul {
   justify-content: space-between;
   gap: 0.5rem;
 }
+
+.ms-Label {
+  font-size: smaller;
+}
+
+.ms-Dialog-actionsRight {
+  display: flex;
+  justify-content: end;
+}
