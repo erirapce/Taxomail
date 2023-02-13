@@ -42,3 +42,10 @@ ul {
   justify-content: space-between;
   gap: 0.5rem;
 }
+
+.ms-TextField {
+  width: 17rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
