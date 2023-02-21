@@ -64,32 +64,19 @@
       });
 
       $("#get-button").on("click", function () {
-        const file = getContactAsync.file;
-        Office.context.mailbox.item.body.setSelectedDataAsync(
-          {
-            contactId: "contact36",
-            firstname: "jsonfile",
-            lastname: "tester",
-            birthday: "2023-02-15",
-            countryCode: "+91",
-            phoneNumber: "333",
-            email: "testester@tester.tester",
-            occupation: "tester",
-          }.contactId
-        );
+        let url = "http://localhost:8080/api/contact/contact36";
+        fetch(url)
+          .then((res) => res.json())
+          .then((out) => Office.context.mailbox.item.body.setSelectedDataAsync(JSON.stringify(out)))
+          .catch((err) => {
+            Office.context.mailbox.item.body.setSelectedDataAsync(err);
+            throw err;
+          });
       });
     });
   };
 
-  function getContactAsync() {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function () {
-      if (xmlHttp.readyState == 4 && xmlHttp.status == 200) xmlHttp.responseText;
-    };
-    xmlHttp.open("GET", "http://localhost:8080/api/contact/contact36", true);
-    xmlHttp.send(null);
-    // return xmlHttp.responseText;
-  }
+  function getContactAsync() {}
 
   function loadGists(user) {
     $("#error-display").hide();
