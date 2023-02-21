@@ -62,8 +62,34 @@
           settingsDialog.addEventHandler(Office.EventType.DialogEventReceived, dialogClosed);
         });
       });
+
+      $("#get-button").on("click", function () {
+        const file = getContactAsync.file;
+        Office.context.mailbox.item.body.setSelectedDataAsync(
+          {
+            contactId: "contact36",
+            firstname: "jsonfile",
+            lastname: "tester",
+            birthday: "2023-02-15",
+            countryCode: "+91",
+            phoneNumber: "333",
+            email: "testester@tester.tester",
+            occupation: "tester",
+          }.contactId
+        );
+      });
     });
   };
+
+  function getContactAsync() {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+      if (xmlHttp.readyState == 4 && xmlHttp.status == 200) xmlHttp.responseText;
+    };
+    xmlHttp.open("GET", "http://localhost:8080/api/contact/contact36", true);
+    xmlHttp.send(null);
+    // return xmlHttp.responseText;
+  }
 
   function loadGists(user) {
     $("#error-display").hide();
