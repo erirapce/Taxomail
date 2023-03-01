@@ -63,16 +63,43 @@
         });
       });
 
+      // Get contact as json object
+      // $("#get-button").on("click", function () {
+      //   let url = "http://localhost:8080/api/contact/contact0";
+      //   const myHeaders = new Headers();
+      //   myHeaders.append("Accept", "application/json");
+
+      //   const myInit = {
+      //     method: "GET",
+      //     headers: myHeaders,
+      //     mode: "cors",
+      //     cache: "no-cache",
+      //   };
+
+      //   const myRequest = new Request(url);
+
+      //   fetch(myRequest, myInit)
+      //     .then((response) => response.json())
+      //     .then((out) => Office.context.mailbox.item.body.setSelectedDataAsync(JSON.stringify(out)))
+      //     .catch((err) => Office.context.mailbox.item.body.setSelectedDataAsync("Error" + err));
+      // });
+
+      // Post Contact
       $("#get-button").on("click", function () {
         let url = "http://localhost:8080/api/contact/contact0";
         const myHeaders = new Headers();
         myHeaders.append("Accept", "application/json");
 
         const myInit = {
-          method: "GET",
-          headers: myHeaders,
+          method: "POST",
           mode: "cors",
           cache: "no-cache",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          redirect: "follow",
+          referrerPolicy: "no-referrer",
         };
 
         const myRequest = new Request(url);
