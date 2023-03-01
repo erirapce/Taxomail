@@ -72,7 +72,7 @@
           method: "GET",
           headers: myHeaders,
           mode: "cors",
-          cache: "default",
+          cache: "no-cache",
         };
 
         const myRequest = new Request(url);
@@ -80,21 +80,20 @@
         fetch(myRequest, myInit)
           .then((response) => response.json())
           .then((out) => Office.context.mailbox.item.body.setSelectedDataAsync(JSON.stringify(out)))
-          .catch((err) => Office.context.mailbox.item.body.setSelectedDataAsync("Error"));
+          .catch((err) => Office.context.mailbox.item.body.setSelectedDataAsync("Error" + err));
       });
     });
   };
 
-  async function getContactAsync(url) {
+  async function getContact(url) {
+    const myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+
     const response = await fetch(url, {
       method: "GET",
       mode: "cors",
       cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      referrerPolicy: "no-referrer",
+      headers: myHeaders,
     });
     return response.json();
   }
