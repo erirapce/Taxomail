@@ -86,6 +86,16 @@
 
       // Post Contact
       $("#get-button").on("click", function () {
+        var contactEg = {
+          contactId: "contact0",
+          firstname: "Yolanda",
+          lastname: "Bosco",
+          birthday: "1988-12-14",
+          countryCode: null,
+          phoneNumber: null,
+          email: "Yolanda Bosco@gmail.com",
+          occupation: null,
+        };
         let url = "http://localhost:8080/api/contact/contact0";
         const myHeaders = new Headers();
         myHeaders.append("Accept", "application/json");
