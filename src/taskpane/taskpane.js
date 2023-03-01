@@ -64,19 +64,40 @@
       });
 
       $("#get-button").on("click", function () {
-        let url = "http://localhost:8080/api/contact/contact36";
-        fetch(url)
-          .then((res) => res.json())
+        let url = "http://localhost:8080/api/contact/contact0";
+        const myHeaders = new Headers();
+        myHeaders.append("Accept", "application/json");
+
+        const myInit = {
+          method: "GET",
+          headers: myHeaders,
+          mode: "cors",
+          cache: "default",
+        };
+
+        const myRequest = new Request(url);
+
+        fetch(myRequest, myInit)
+          .then((response) => response.json())
           .then((out) => Office.context.mailbox.item.body.setSelectedDataAsync(JSON.stringify(out)))
-          .catch((err) => {
-            Office.context.mailbox.item.body.setSelectedDataAsync(err);
-            throw err;
-          });
+          .catch((err) => Office.context.mailbox.item.body.setSelectedDataAsync("Error"));
       });
     });
   };
 
-  function getContactAsync() {}
+  async function getContactAsync(url) {
+    const response = await fetch(url, {
+      method: "GET",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      referrerPolicy: "no-referrer",
+    });
+    return response.json();
+  }
 
   function loadGists(user) {
     $("#error-display").hide();
