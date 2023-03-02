@@ -87,37 +87,43 @@
       // Post Contact
       $("#get-button").on("click", function () {
         var contactEg = {
-          contactId: "contact0",
-          firstname: "Yolanda",
-          lastname: "Bosco",
-          birthday: "1988-12-14",
+          contactId: "contact50",
+          firstname: "Post Test",
+          lastname: "Leuschke",
+          birthday: "2003-09-14",
           countryCode: null,
           phoneNumber: null,
-          email: "Yolanda Bosco@gmail.com",
+          email: "Lettie Leuschke@yahoo.com",
           occupation: null,
         };
-        let url = "http://localhost:8080/api/contact/contact0";
+
+        let url = "http://localhost:8080/api/newContact";
         const myHeaders = new Headers();
         myHeaders.append("Accept", "application/json");
 
         const myInit = {
           method: "POST",
-          mode: "cors",
+          mode: "no-cors",
           cache: "no-cache",
-          credentials: "same-origin",
+          credentials: "omit",
           headers: {
             "Content-Type": "application/json",
           },
           redirect: "follow",
           referrerPolicy: "no-referrer",
+          body: JSON.stringify(contactEg),
         };
 
         const myRequest = new Request(url);
 
         fetch(myRequest, myInit)
           .then((response) => response.json())
-          .then((out) => Office.context.mailbox.item.body.setSelectedDataAsync(JSON.stringify(out)))
-          .catch((err) => Office.context.mailbox.item.body.setSelectedDataAsync("Error" + err));
+          .then((out) =>
+            Office.context.mailbox.item.body.setSelectedDataAsync(JSON.stringify(out) + "was added in contacts list")
+          )
+          .catch((err) =>
+            Office.context.mailbox.item.body.setSelectedDataAsync("Error" + err + ": it was not added. ")
+          );
       });
     });
   };
